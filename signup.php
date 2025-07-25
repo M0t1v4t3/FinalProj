@@ -1,11 +1,21 @@
-<?php include('includes/header.php'); ?>
+<?php include('header.php'); ?>
 <main>
     <h2>Create Your Account</h2>
-    <form action="process_signup.php" method="post">
-        <input type="text" name="username" placeholder="Username" required><br>
-        <input type="email" name="email" placeholder="Email" required><br>
-        <input type="password" name="password" placeholder="Password" required><br>
-        <button type="submit">Register</button>
-    </form>
+    <div class="form-container">
+        <p style="text-align: center; margin-bottom: 2rem; color: #666;">
+            Join our community to stay updated on rescue activities and adoption opportunities.
+        </p>
+        
+        <form action="process_signup.php" method="post">
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="email" name="email" placeholder="Email Address" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <button type="submit">Create Account</button>
+        </form>
+        
+        <p style="text-align: center; margin-top: 1rem; color: #666;">
+            Already have an account? <a href="login.php" style="color: #FF6B6B;">Sign in here</a>
+        </p>
+    </div>
 </main>
-<?php include('includes/footer.php'); ?>
+<?php include('footer.php'); ?>
