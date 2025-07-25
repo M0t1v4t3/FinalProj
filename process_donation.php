@@ -1,5 +1,5 @@
 <?php
-include 'includes/db.php';
+include 'db.php';
 
 $name = $_POST['donor_name'];
 $amount = $_POST['amount'];
