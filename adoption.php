@@ -1,11 +1,18 @@
-<?php include('includes/header.php'); ?>
+<?php include('header.php'); ?>
 <main>
     <h2>Adoption Center</h2>
-    <form action="process_adoption.php" method="post">
-        <input type="text" name="name" placeholder="Your Name" required><br>
-        <input type="email" name="email" placeholder="Your Email" required><br>
-        <textarea name="message" placeholder="Why do you want to adopt?"></textarea><br>
-        <button type="submit">Submit</button>
-    </form>
+    <div class="form-container">
+        <p style="text-align: center; margin-bottom: 2rem; color: #666;">
+            Ready to give a rescued animal a loving home? Fill out our adoption application below.
+        </p>
+        
+        <form action="process_adoption.php" method="post">
+            <input type="text" name="name" placeholder="Your Full Name" required>
+            <input type="email" name="email" placeholder="Your Email Address" required>
+            <input type="tel" name="phone" placeholder="Phone Number" required>
+            <textarea name="message" placeholder="Tell us why you want to adopt and about your living situation..." required></textarea>
+            <button type="submit">Submit Application</button>
+        </form>
+    </div>
 </main>
-<?php include('includes/footer.php'); ?>
+<?php include('footer.php'); ?>
