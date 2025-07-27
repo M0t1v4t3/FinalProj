@@ -5,41 +5,45 @@
         Use our interactive map to report stray animals in your area or find nearby rescue centers.
     </p>
 
+    <!-- Leaflet CSS & JS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
     <style>
         .map-container {
             width: 100%;
-            max-width: 1000px;
+            height: 500px;
             margin: 0 auto;
             border: 2px solid #ccc;
             border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 0.8rem 1.5rem;
-            background-color: #009688;
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            font-weight: bold;
-            transition: background-color 0.3s ease;
-        }
-
-        .btn:hover {
-            background-color: #00796b;
         }
     </style>
     
-    <div class="map-container">
-    <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1L3NceLanxq8T-XK_cSafj7dYj6Pe67A&ehbc=2E312F" width="640" height="480"></iframe>
-                
-        </iframe>
-    </div>
+    <!-- Map Container -->
+    <div class="map-container" id="map"></div>
     
-    <div style="text-align: center; margin-top: 2rem;">
-        <a href="https://forms.gle/your-report-form" class="btn">Report a Stray Animal</a>
-    </div>
+    <script>
+        // Initialize the map
+        const map = L.map('map').setView([14.5678, 121.0206], 13);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);
+
+        // Load markers from JSON
+        fetch('map-locations.json')
+            .then(response => response.json())
+            .then(locations => {
+                locations.forEach(location => {
+                    const marker = L.marker([location.lat, location.lng])
+                        .addTo(map)
+                        .bindPopup(`<b>${location.title}</b><br>${location.info}`);
+                });
+            })
+            .catch(error => {
+                console.error("Error loading locations:", error);
+                document.getElementById("map").innerHTML = 
+                    "<p>Error loading map data. Please try again later.</p>";
+            });
+    </script>
 </main>
 <?php include('footer.php'); ?>

@@ -1,0 +1,62 @@
+[
+    {
+        "lat": 14.567816,
+        "lng": 121.020652,
+        "title": "Main Makati Office",
+        "info": "Main office of the organization"
+    },
+    {
+        "lat": 14.552111994830508,
+        "lng": 121.04994550398149,
+        "title": "BGC Branch",
+        "info": "Bonifacio Global City branch office"
+    },
+    {
+        "lat": 14.565148667929826,
+        "lng": 120.99302670614168,
+        "title": "TAFT branch",
+        "info": "TAFT/DLSU branch office"
+    },
+    {
+        "lat": 14.59928627244009,
+        "lng": 121.01164908632335,
+        "title": "Sta Mesa Branch",
+        "info": "Sta Mesa/PUP branch office"
+    },
+    {
+        "lat": 14.588413521908688,
+        "lng": 121.04263291586769,
+        "title": "Biyaya Animal Care - Mandala (Pet Hospital)",
+        "info": "Veterinarian clinic and pet hospital"
+    },
+    {
+        "lat": 14.583963287739648,
+        "lng": 121.04921594283317,
+        "title": "CARA Welfare Philippines",
+        "info": "Veterinarian clinic and pet hospital"
+    },
+    {
+        "lat": 14.588349793914531,
+        "lng": 121.08965287251955,
+        "title": "Cats of Sorrento",
+        "info": "Sorrento Area Cat Rescue"
+    },
+    {
+        "lat": 14.621617194729296,
+        "lng": 121.05651225257009,
+        "title": "Cats of Araneta City",
+        "info": "Araneta City Cat Rescue"
+    },
+    {
+        "lat": 14.654965940377219,
+        "lng": 121.03344673730281,
+        "title": "Cats of Trinoma",
+        "info": "Trinoma Area Cat Rescue"
+    },
+    {
+        "lat": 14.656447877711035,
+        "lng": 121.06859306807584,
+        "title": "Cats of UP Diliman",
+        "info": "UP Diliman Area Cat Rescue"
+    }
+]
