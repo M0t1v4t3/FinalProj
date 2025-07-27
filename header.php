@@ -10,7 +10,7 @@
 <header>
     <div class="header-content">
         <div class="logo-section">
-            <img src="assets/images/logo.png" alt="Saving Strays Logo">
+            <img src="https://www.ivolunteer.com.ph/storage/logo_images/2y0nRfFMoMoxGRQ3FLnGL83CcGyHWmIbQEFS4aeq.png" alt="Saving Strays Logo">
             <h1>Saving Strays</h1>
         </div>
         <nav>
