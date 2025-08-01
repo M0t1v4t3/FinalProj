@@ -1,4 +1,6 @@
-<?php include('header.php'); ?>
+<?php include('header.php');
+include 'db.php';
+ ?>
 <main>
     <div class="hero-section">
         <h2>Every Stray Deserves Love</h2>

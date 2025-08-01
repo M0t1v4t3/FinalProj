@@ -1,4 +1,6 @@
-<?php include('header.php'); ?>
+<?php include('header.php');
+include 'db.php';
+ ?>
 <main>
     <h2>Stray Community Map</h2>
     <p style="text-align: center; margin-bottom: 2rem; color: #666;">

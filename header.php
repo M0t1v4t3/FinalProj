@@ -1,3 +1,9 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,14 +21,27 @@
         </div>
         <nav>
             <ul>
-                <li><a href="index.php">Home</a></li>
-                <li><a href="animals.php">Rescued Animals</a></li>
-                <li><a href="adoption.php">Adoption</a></li>
-                <li><a href="donations.php">Donations</a></li>
-                <li><a href="volunteers.php">Volunteers</a></li>
-                <li><a href="community.php">Community Map</a></li>
-                <li><a href="directory.php">Directory</a></li>
-                <li><a href="signup.php">Sign Up</a></li>
+    <li><a href="index.php">Home</a></li>
+    <li><a href="animals.php">Rescued Animals</a></li>
+    <li><a href="adoption.php">Adoption</a></li>
+    <li><a href="donations.php">Donations</a></li>
+    <li><a href="volunteers.php">Volunteers</a></li>
+    <li><a href="community.php">Community Map</a></li>
+    <li><a href="directory.php">Directory</a></li>
+
+    <?php if (isset($_SESSION['user'])): ?>
+    <li><a href="account.php" class="btn-secondary">Account</a></li>
+
+    <?php if ($_SESSION['user']['is_admin']): ?>
+        <li><a href="admin_dashboard.php" class="btn-secondary">Admin</a></li>
+    <?php endif; ?>
+
+    <li><a href="logout.php" class="btn-secondary">Logout</a></li>
+<?php else: ?>
+    <li><a href="signup.php" class="btn-secondary">Sign Up</a></li>
+    <li><a href="login.php" class="btn-secondary">Login</a></li>
+<?php endif; ?>
+
             </ul>
         </nav>
     </div>

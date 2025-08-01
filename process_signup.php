@@ -6,7 +6,9 @@ $email = $_POST['email'];
 $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
 $sql = "INSERT INTO users (username, email, password) VALUES ('$username', '$email', '$password')";
-$conn->query($sql);
+$pdo->exec($sql);
 
 echo "Account created successfully!";
+header("Location: index.php");
+exit;
 ?>

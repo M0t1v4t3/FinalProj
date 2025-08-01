@@ -1,4 +1,6 @@
-<?php include('header.php'); ?>
+<?php include('header.php'); 
+include 'db.php';
+?>
 <main>
     <h2>Join Our Volunteer Team</h2>
     <div class="form-container">
