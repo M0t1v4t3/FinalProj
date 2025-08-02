@@ -1,12 +1,14 @@
-<?php include('header.php'); 
+<?php 
+include('header.php'); 
 include 'db.php';
 ?>
+
 <main>
     <h2>Rescued Animals</h2>
     <p style="text-align: center; margin-bottom: 2rem; color: #666;">
         Meet the amazing animals we've rescued and cared for. They're all looking for their forever homes.
     </p>
-    
+
     <style>
         .animals-grid {
             display: grid;
@@ -53,46 +55,32 @@ include 'db.php';
     </style>
 
     <div class="animals-grid">
+        <?php
+        try {
+            $stmt = $pdo->query("SELECT * FROM animals ORDER BY id DESC");
+            while ($animal = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                echo '<div class="animal-card">';
+                echo '<img src="' . htmlspecialchars($animal['image_url']) . '" alt="' . htmlspecialchars($animal['name']) . '">';
+                echo '<div class="animal-info">';
+                echo '<h4>' . htmlspecialchars($animal['name']) . '</h4>';
+                echo '<p>' . htmlspecialchars($animal['description']) . '</p>';
 
-        <div class="animal-card">
-            <img src="https://savingstraysorg.wordpress.com/wp-content/uploads/2024/08/63.png" alt="Nicole">
-            <div class="animal-info">
-                <h4>Nicole</h4>
-                <p>Nicole is the "Queen of Building K." A calm and observant cat who enjoys lounging in cozy corners.</p>
-                <div class="animal-tags">
-                    <span class="tag">Friendly</span>
-                    <span class="tag">Timid</span>
-                    <span class="tag">Calm</span>
-                </div>
-            </div>
-        </div>
+                if (!empty($animal['tags'])) {
+                    $tags = explode(',', $animal['tags']);
+                    echo '<div class="animal-tags">';
+                    foreach ($tags as $tag) {
+                        echo '<span class="tag">' . htmlspecialchars(trim($tag)) . '</span>';
+                    }
+                    echo '</div>';
+                }
 
-        <div class="animal-card">
-            <img src="https://savingstraysorg.wordpress.com/wp-content/uploads/2024/08/53.png" alt="Maritess">
-            <div class="animal-info">
-                <h4>Maritess</h4>
-                <p>Marites, well, is a marites. SHe's a friendly cat who lets you know what she wants.</p>
-                <div class="animal-tags">
-                    <span class="tag">Friendly</span>
-                    <span class="tag">Calm</span>
-                    <span class="tag">Affectionate</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="animal-card">
-            <img src="https://savingstraysorg.wordpress.com/wp-content/uploads/2024/08/90.png" alt="Missy">
-            <div class="animal-info">
-                <h4>Missy</h4>
-                <p>Missy is a gentle introvert who is very quiet and reserved.</p>
-                <div class="animal-tags">
-                    <span class="tag">Gentle</span>
-                    <span class="tag">Introverted</span>
-                    <span class="tag">Patient</span>
-                </div>
-            </div>
-        </div>
-
+                echo '</div></div>';
+            }
+        } catch (PDOException $e) {
+            echo "<p style='text-align: center; color: red;'>Failed to load animals: " . $e->getMessage() . "</p>";
+        }
+        ?>
     </div>
 </main>
+
 <?php include('footer.php'); ?>
