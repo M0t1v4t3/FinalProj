@@ -12,20 +12,72 @@ $sql = "INSERT INTO volunteers (name, email, phone, availability, signup_date)
         VALUES ('$name', '$email', '$phone', '$availability', NOW())";
 
 if ($conn->query($sql)) {
-    // Success message with back link
-    echo '<div style="text-align: center; padding: 20px; font-family: Arial, sans-serif;">';
-    echo '<h2 style="color: #4CAF50;">Thank you for volunteering!</h2>';
-    echo '<p>We appreciate your willingness to help our cause.</p>';
-    echo '<a href="index.php" style="display: inline-block; margin-top: 20px; padding: 10px 20px; background-color: #f15e64; color: white; text-decoration: none; border-radius: 5px;">Back to Home Page</a>';
-    echo '</div>';
+    // Success message with home button
+    echo '<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Volunteer Registration Successful</title>
+        <style>
+            body {
+                font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+                background-color: #f9f9f9;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                margin: 0;
+            }
+            .message-container {
+                text-align: center;
+                background-color: white;
+                padding: 40px;
+                border-radius: 12px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                max-width: 500px;
+            }
+            h2 {
+                color: #4CAF50;
+                margin-bottom: 20px;
+            }
+            p {
+                color: #555;
+                margin-bottom: 30px;
+                font-size: 18px;
+            }
+            .home-btn {
+                display: inline-block;
+                padding: 12px 24px;
+                background: linear-gradient(to right, #f15e64, #e1758f);
+                color: white;
+                text-decoration: none;
+                border-radius: 50px;
+                font-weight: 600;
+                transition: all 0.3s;
+            }
+            .home-btn:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            }
+        </style>
+    </head>
+    <body>
+        <div class="message-container">
+            <h2>Thank You for Volunteering!</h2>
+            <p>We appreciate your willingness to help our cause. Our team will review your application and contact you soon.</p>
+            <a href="index.php" class="home-btn">Back to Home Page</a>
+        </div>
+    </body>
+    </html>';
 } else {
-    // Error message with back link
-    echo '<div style="text-align: center; padding: 20px; font-family: Arial, sans-serif;">';
-    echo '<h2 style="color: #f44336;">Registration Error</h2>';
-    echo '<p>There was a problem processing your registration.</p>';
-    echo '<p>Error: ' . $conn->error . '</p>';
-    echo '<a href="volunteer.php" style="display: inline-block; margin-top: 20px; padding: 10px 20px; background-color: #f15e64; color: white; text-decoration: none; border-radius: 5px;">Try Again</a>';
-    echo '</div>';
+    // Error message with try again button
+    echo '<div style="text-align: center; padding: 40px; font-family: Arial, sans-serif;">
+            <h2 style="color: #f44336;">Registration Error</h2>
+            <p>There was a problem processing your registration.</p>
+            <p style="color: #777; font-size: 14px;">Error: ' . htmlspecialchars($conn->error) . '</p>
+            <a href="volunteer.php" style="display: inline-block; margin-top: 20px; padding: 12px 24px; background-color: #f15e64; color: white; text-decoration: none; border-radius: 50px; font-weight: 600;">Try Again</a>
+          </div>';
 }
 
 $conn->close();

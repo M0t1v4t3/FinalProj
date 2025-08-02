@@ -85,12 +85,12 @@ $result = $conn->query($sql);
         font-weight: 500;
         text-decoration: none;
         transition: all 0.3s ease;
+        margin-right: 5px;
     }
 
     .btn-view {
         background-color: #4CAF50;
         color: white;
-        margin-right: 5px;
     }
 
     .btn-delete {
@@ -127,7 +127,7 @@ $result = $conn->query($sql);
         color: #a94442;
     }
 
-    /* Availability Modal Styles */
+    /* Volunteer Details Modal */
     .modal {
         display: none;
         position: fixed;
@@ -170,6 +170,16 @@ $result = $conn->query($sql);
     .modal-body {
         padding: 10px 0;
     }
+
+    .modal-body p {
+        margin-bottom: 10px;
+    }
+
+    .modal-availability {
+        margin-top: 15px;
+        padding-top: 15px;
+        border-top: 1px solid #eee;
+    }
 </style>
 
 <div class="admin-volunteers-container">
@@ -206,7 +216,14 @@ $result = $conn->query($sql);
                             <td><?= htmlspecialchars($row['phone'] ?? 'N/A') ?></td>
                             <td><?= date('M j, Y', strtotime($row['signup_date'])) ?></td>
                             <td>
-                                <a href="#" onclick="showAvailability(<?= $row['id'] ?>, '<?= htmlspecialchars(addslashes($row['name'])) ?>', `<?= htmlspecialchars(addslashes($row['availability'])) ?>`)" class="action-btn btn-view">View</a>
+                                <a href="#" onclick="showVolunteerDetails(
+                                    <?= $row['id'] ?>, 
+                                    '<?= htmlspecialchars(addslashes($row['name'])) ?>', 
+                                    '<?= htmlspecialchars(addslashes($row['email'])) ?>', 
+                                    '<?= htmlspecialchars(addslashes($row['phone'])) ?>', 
+                                    '<?= date('M j, Y', strtotime($row['signup_date'])) ?>',
+                                    '<?= htmlspecialchars(addslashes($row['availability'])) ?>'
+                                )" class="action-btn btn-view">View</a>
                                 <a href="?section=volunteers&delete_id=<?= $row['id'] ?>" class="action-btn btn-delete" onclick="return confirm('Are you sure you want to permanently delete this volunteer?')">Delete</a>
                             </td>
                         </tr>
@@ -221,34 +238,42 @@ $result = $conn->query($sql);
     </div>
 </div>
 
-<!-- Availability Modal -->
-<div id="availabilityModal" class="modal">
+<!-- Volunteer Details Modal -->
+<div id="volunteerModal" class="modal">
     <div class="modal-content">
         <span class="close" onclick="closeModal()">&times;</span>
         <div class="modal-header">
             <h3 id="modalVolunteerName"></h3>
         </div>
         <div class="modal-body">
-            <h4>Availability Details:</h4>
-            <p id="modalAvailabilityText"></p>
+            <p><strong>Email:</strong> <span id="modalVolunteerEmail"></span></p>
+            <p><strong>Phone:</strong> <span id="modalVolunteerPhone"></span></p>
+            <p><strong>Signup Date:</strong> <span id="modalVolunteerDate"></span></p>
+            <div class="modal-availability">
+                <h4>Availability Details:</h4>
+                <p id="modalVolunteerAvailability"></p>
+            </div>
         </div>
     </div>
 </div>
 
 <script>
-    function showAvailability(id, name, availability) {
+    function showVolunteerDetails(id, name, email, phone, signupDate, availability) {
         document.getElementById('modalVolunteerName').textContent = name;
-        document.getElementById('modalAvailabilityText').textContent = availability;
-        document.getElementById('availabilityModal').style.display = 'block';
+        document.getElementById('modalVolunteerEmail').textContent = email;
+        document.getElementById('modalVolunteerPhone').textContent = phone || 'N/A';
+        document.getElementById('modalVolunteerDate').textContent = signupDate;
+        document.getElementById('modalVolunteerAvailability').textContent = availability || 'No availability information provided';
+        document.getElementById('volunteerModal').style.display = 'block';
     }
 
     function closeModal() {
-        document.getElementById('availabilityModal').style.display = 'none';
+        document.getElementById('volunteerModal').style.display = 'none';
     }
 
     // Close modal when clicking outside of it
     window.onclick = function(event) {
-        const modal = document.getElementById('availabilityModal');
+        const modal = document.getElementById('volunteerModal');
         if (event.target == modal) {
             modal.style.display = 'none';
         }
