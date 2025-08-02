@@ -1,5 +1,4 @@
 <?php 
-include('header.php'); 
 include('db.php'); // Assumes $pdo is the correct PDO connection
 ?>
 
@@ -15,9 +14,9 @@ include('db.php'); // Assumes $pdo is the correct PDO connection
     <?php endif; ?>
 
     <!-- ADD NEW ANIMAL -->
-    <section style="max-width: 800px; margin: 2rem auto;">
-        <h3>Add New Animal</h3>
-        <form method="POST" action="add_animal_process.php">
+    <section class="animal-form-container">
+    <h3>Add New Animal</h3>
+    <form method="POST" action="add_animal_process.php">
             <label for="name">Name:</label><br>
             <input type="text" id="name" name="name" required style="width:100%; padding:0.5rem;"><br><br>
 
@@ -82,6 +81,74 @@ include('db.php'); // Assumes $pdo is the correct PDO connection
 
 <!-- STYLES -->
 <style>
+
+
+.animal-form-container {
+    max-width: 700px;
+    margin: 3rem auto;
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+}
+
+.animal-form-container h3 {
+    text-align: center;
+    color: #FF6B6B;
+    margin-bottom: 1.5rem;
+}
+
+.animal-form-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 0.4rem;
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group textarea {
+    padding: 0.75rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    width: 100%;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.center-btn {
+    display: flex;
+    justify-content: center;
+}
+
+.animal-form-container button {
+    background: linear-gradient(135deg, #FF6B6B, #FF8E8E);
+    color: white;
+    padding: 0.75rem 2rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.animal-form-container button:hover {
+    background: #FF6B6B;
+}
+
     .animals-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -151,4 +218,3 @@ include('db.php'); // Assumes $pdo is the correct PDO connection
 </style>
 
 <?php include('footer.php'); ?>
-    
